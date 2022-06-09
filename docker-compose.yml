@@ -10,7 +10,7 @@ services:
       MYSQL_USER: aman
       MYSQL_PASSWORD: 1234
     ports:
-      - "6033:3306"
+      - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
   phpmyadmin:
