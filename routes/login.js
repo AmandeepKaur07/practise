@@ -6,10 +6,10 @@
  const func = require('../model/login');
 
  var con = mysql.createConnection({
-    host: "192.168.14.1",
-    user: "root",
-    password: "1234",
-    database: "app_db"
+    host: "easylearning.guru",
+    user: "kcc_student",
+    password: "Kccitm.edu.in",
+    database: "akccStudent"
  });
 
 
@@ -25,11 +25,20 @@
     res.render('login')
  });
  
- router.get('/getLogin', function(req, res, next){
-    console.log(req.query)
-    res.json({"Name": req})
+ router.get('/getLogin', function (req, res, next) {
+   console.log(req.query)
+   con.connect()
+   con.query("select * from form", function (err, result) {
+     if (err) throw err;
+     console.log(result);
+     res.render('login', { "data": result })
+   });
  });
-
+ 
+ router.post('/updateLogin', function (req, res, next) {
+   console.log(req.body)
+   res.json({ "Name": "Hello" })
+ });
  router.post('/getLogin', function(req, res, next){
     getloginPost(req, res, next)
  });
