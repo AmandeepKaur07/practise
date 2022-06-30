@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+<body>
+  <form id ="add" action="/calculator/add" method="post">
+  <label for="num1">num1:</label><br>
+  <input type="number" name="num1" id="num1"  placeholder="num1" value="{{num1}}">
+  <label for="num2">num2:</label><br>
+  <input type="number" id="num2" name="num2" value=><br><br>
+  <label for="result">result:</label><br>
+  <input type="number" name="result" id="result" readonly placeholder="result" value="{{result}}">
+  <button id="add" type="submit">Add</button>
+   <button id="sub" type="submit" formaction="/calculator/sub">sub</button>
+   <button id="multi" type="submit" formaction="/calculator/multi">multi</button>
+  </form>
+  
+  <table>
+    
+        <tr>
+            <td>num1</td>
+            <td>num2</td>
+            <td>operation</td>
+            <td>result</td>
+            <td>submit</td>
+            <td></td>
+        </tr>
+        {(#data)}
+
+        <tr>
+            <form  class="{{id}}">
+                <td><input type="text" name="num1" value="{{num1}}"> </td>
+                <td><input type="text" name="num2" value="{{num2}}"> </td>
+                <td><input type="text" class="operation" id="{{operation }}" placeholder="operation"></input> 
+                <td><input type="text" name="result" value="{{result}}" > </td>
+                  <td><input type="submit"> </td>
+            </form>
+        </tr>
+        {(/data)}
+    </table>
+    <script>
+    $("#add").click(function(){
+  $.ajax({url: "/calculator/add", success: function() 
+});
+ $("#sub").click(function(){
+  $.ajax({url: "/calculator/sub", success: function() 
+});
+$("#multi").click(function(){
+  $.ajax({url: "/calculator/multi", success: function() 
+});
+
+</script>
+  
+</body>
+</html>

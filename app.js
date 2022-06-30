@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var teacherRouter = require('./routes/teacher');
 var loginRouter = require('./routes/login');
 var idcardRouter = require('./routes/idcard');
-var calRouter = require('./routes/cal')
+var sampleRouter = require('./routes/sample')
 var app = express();
 
 // view engine setup
@@ -29,7 +29,7 @@ app.use('/users', usersRouter);
 app.use('/teacher', teacherRouter);
 app.use('/login', loginRouter);
 app.use('/idcard', idcardRouter);
-app.use('/cal', calRouter);
+app.use('/sample', sampleRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
  
