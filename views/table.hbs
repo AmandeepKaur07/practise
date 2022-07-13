@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>book</title>
+</head>
+<body>
+     <!-- Font  -->
+     <div class="tbl-header">
+<h2>Showing the list of book</h2>
+    <table  cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            {{!-- <th>S.N</th> --}}
+            <th>BOOK NAME</th>
+            <th>NO COPIES</th>
+			<th> AUTHOR NAME</th>
+            
+        </tr>
+        
+        {{#each userData}}
+         <tr>
+           
+                <td><input type="text" name="bname" value="{{bname}}"> </td>
+                <td><input type="number" name="ncopy" value="{{ncopy}}"> </td>
+                <td><input type="button" class="btn-delete" id="{{id}}" placeholder="Update">Delete</input> </td>
+                <td><input type="submit"> </td>
+            </form>
+        </tr>
+        <tr>
+            {{!-- <td>{{i}}</td> --}}
+            <td>{{bname}}</td>
+            <td>{{ncopy}}</td>
+            <td>{{aname}}</td>
+			<td>
+			    <form action="/delete" method="post"> 
+				<input type="text" id="id" value="{{id}}">
+				<br>
+				<input type="submit"  value="delete">
+				</form>
+			</td>
+            
+        </tr>
+        {{/each}}
+    </table>
+    
+    </div>
+</body>
+<script>
+$(".btn-delete").click((event)=>{
+    {{!-- alert("Do you want to delete this") --}}
+    $.post('/login/deleteLogin', {id:event.target.id}).then((data)=>{
+       if(data.code ==1){
+           location.reload();
+           }else{
+           alert(".......")
+       }
+    })
+})
+</script>
+</html>

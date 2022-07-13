@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+<body>
+    <form action="/try/gettry" method="post">
+        <input type="email" name="Ashu" id="" placeholder="email"> <br>
+        <input type="password" name="pass" id="" placeholder="pass"><br>
+        <input type="submit">
+    </form>
+    <table>
+        <tr>
+            <td>bname</td>
+            <td>ncopy</td>
+            <td>Delete</td>
+            <td></td>
+        </tr>
+        {(#data)}
+
+        <tr>
+
+                <td><input type="text" name="bname" value="{{bname}}"> </td>
+                <td><input type="number" name="ncopy" value="{{ncopy}}"> </td>
+                <td><input type="button" class="btn-delete" id="{{id}}" placeholder="delete">Delete</input> </td>
+                <td><input type="submit"> </td>
+            </form>
+        </tr>
+       {(/data)}
+    </table>
+
+</body>
+<script>
+
+$(".btn-delete").click((event)=>{
+    {{!-- alert("Do you want to delete this") --}}
+    $.post('/try/deletetry', {bname:event.target.id}).then((data)=>{
+       if(data.code ==1){
+           location.reload();
+           }else{
+           alert(".......")
+       }
+    })
+})
+</script>
+</html>

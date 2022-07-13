@@ -12,27 +12,20 @@ var con = mysql.createConnection({
 
 
 router.get('/', function(req, res, next) {
-    con.connect(function(err) {
-        if (err) console.log("err");
-        console.log("Connected!");
-      });
-    res.render('index')
+   
+    res.render('register')
 });
 
-router.post('/about', function(req, res, next) {
+router.post('/', function(req, res, next) {
     console.log(req.body)
-    var sql = "INSERT INTO `amandeep` (`fname`, `lname`) \
-    VALUES ('"+req.body.fname+"', '"+req.body.lname+"');"
-    console.log(sql)
-   con.connect()
-      con.query(sql, function (err, result) {
-        if (err) throw err;
+    var sql = "INSERT INTO `book_entry` (`bname`, `ncopy`,`aname`) \
+    VALUES ('"+req.body.bname+"', '"+req.body.copies+"','"+req.body.author+"');"
+    con.getConnection(function (err, connection) {
+      connection.query(sql, function (err, result) {
+        
         console.log(result);
-
+        res.redirect('/table');
       });
-    
-res.json({"Name":req.body})
-});
-
-
-module.exports = router;
+    });
+  });
+  module.exports = router;
